@@ -1,4 +1,8 @@
 
+#include "AppGateWayCfg.h"
+
+#if (USE_STATIC_ALLOCATION == TRUE)
+
 #include "Queue_ArrBased.h"
 
 
@@ -55,6 +59,25 @@ uint32_t QAB_queue_size(Queue_ArrBased *ptr_queue)
     return QAB_INVALID_ARG;
 }
 QAB_return_t QAB_queue_append(Queue_ArrBased *ptr_queue,QueueEntry *ptr_entry)
+{
+    if((ptr_queue != NULL) && (ptr_entry != NULL))
+    {
+        if(ptr_queue->QAB_InitStatus == TRUE)
+        {
+            if(ptr_queue->Queue_ArrBased_rear== MAX_QUEUE_LENGTH-1)
+                ptr_queue->Queue_ArrBased_rear=0;
+            else
+                ptr_queue->Queue_ArrBased_rear++;
+
+            ptr_queue->entry_arr[ptr_queue->Queue_ArrBased_rear]=*ptr_entry;
+            ptr_queue->Queue_ArrBased_size++;
+            return QAB_NO_ERRORS;
+        }
+        return QAB_QUEUE_NOT_INITIALIZED;
+    }
+    return QAB_INVALID_ARG;
+}
+QAB_return_t QAB_queue_append_front(Queue_ArrBased *ptr_queue,QueueEntry *ptr_entry)
 {
     if((ptr_queue != NULL) && (ptr_entry != NULL))
     {
@@ -142,3 +165,4 @@ QAB_return_t QAB_queue_traverse(Queue_ArrBased *ptr_queue,void(*ptr_func)(QueueE
     return QAB_INVALID_ARG;
 
 }
+#endif //#if (USE_STATIC_ALLOCATION == TRUE)

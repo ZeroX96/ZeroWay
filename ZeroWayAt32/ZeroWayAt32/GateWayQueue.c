@@ -14,14 +14,11 @@ GatewayQueueRetT GatewayQueueCreate (GatewayQueueT* ptr_queue){
     }
     
     #if (USE_STATIC_ALLOCATION == TRUE)
-    QAB_queue_create(ptr_queue);
-    #endif //USE_STATIC_ALLOCATION
-
-    #if (USE_DYNAMIC_ALLOCATION == TRUE)
-    QLB_create(ptr_queue);
-    #endif //USE_DYNAMIC_ALLOCATION
-    
-    return QAB_NO_ERRORS;
+        return QAB_queue_create(ptr_queue);
+        //#endif //USE_STATIC_ALLOCATION
+    #elif (USE_DYNAMIC_ALLOCATION == TRUE)
+        return QLB_create(ptr_queue);
+    #endif //USE_DYNAMIC_ALLOCATION or USE_STATIC_ALLOCATION
 }
 
 GatewayQueueRetT GatewayQueueEmpty (GatewayQueueT* ptr_queue){
@@ -32,31 +29,24 @@ GatewayQueueRetT GatewayQueueEmpty (GatewayQueueT* ptr_queue){
     }
     
     #if (USE_STATIC_ALLOCATION == TRUE)
-    QAB_queue_empty(ptr_queue);
-    #endif //USE_STATIC_ALLOCATION
-
-    #if (USE_DYNAMIC_ALLOCATION == TRUE)
-    QLB_empty(ptr_queue);
-    #endif //USE_DYNAMIC_ALLOCATION
-    
-    return QAB_NO_ERRORS;
+        return QAB_queue_empty(ptr_queue);
+        //#endif //USE_STATIC_ALLOCATION
+    #elif (USE_DYNAMIC_ALLOCATION == TRUE)
+        return QLB_empty(ptr_queue);
+    #endif //USE_DYNAMIC_ALLOCATION or USE_STATIC_ALLOCATION
 }
 GatewayQueueRetT GatewayQueueFull (GatewayQueueT* ptr_queue){
     //check the arguments
-    if(ptr_queue == NULL)
-    {
+    if(ptr_queue == NULL){
         return QAB_INVALID_ARG;
     }
     
     #if (USE_STATIC_ALLOCATION == TRUE)
-    QAB_queue_full(ptr_queue);
-    #endif //USE_STATIC_ALLOCATION
-
-    #if (USE_DYNAMIC_ALLOCATION == TRUE)
-    QLB_full(ptr_queue);
+        return QAB_queue_full(ptr_queue);
+        //#endif //USE_STATIC_ALLOCATION
+    #elif (USE_DYNAMIC_ALLOCATION == TRUE)
+        return QLB_full(ptr_queue);
     #endif //USE_DYNAMIC_ALLOCATION
-    
-    return QAB_NO_ERRORS;
 }
 uint32_t GatewayQueueSize (GatewayQueueT* ptr_queue){
     //check the arguments
@@ -66,14 +56,11 @@ uint32_t GatewayQueueSize (GatewayQueueT* ptr_queue){
     }
     
     #if (USE_STATIC_ALLOCATION == TRUE)
-    QAB_queue_size(ptr_queue);
-    #endif //USE_STATIC_ALLOCATION
-
-    #if (USE_DYNAMIC_ALLOCATION == TRUE)
-    QLB_size(ptr_queue);
+        return QAB_queue_size(ptr_queue);
+        //#endif //USE_STATIC_ALLOCATION
+    #elif (USE_DYNAMIC_ALLOCATION == TRUE)
+        return QLB_size(ptr_queue);
     #endif //USE_DYNAMIC_ALLOCATION
-    
-    return QAB_NO_ERRORS;
 }
 GatewayQueueRetT GatewayQueueAppend  (GatewayQueueT* ptr_queue,QueueEntry* ptr_entry){
     //check the arguments
@@ -83,14 +70,25 @@ GatewayQueueRetT GatewayQueueAppend  (GatewayQueueT* ptr_queue,QueueEntry* ptr_e
     }
     
     #if (USE_STATIC_ALLOCATION == TRUE)
-    QAB_queue_append(ptr_queue,ptr_entry);
-    #endif //USE_STATIC_ALLOCATION
-
-    #if (USE_DYNAMIC_ALLOCATION == TRUE)
-    QLB_append(ptr_queue,ptr_entry);
+        return QAB_queue_append(ptr_queue,ptr_entry);
+        //#endif //USE_STATIC_ALLOCATION
+    #elif (USE_DYNAMIC_ALLOCATION == TRUE)
+        return QLB_append(ptr_queue,ptr_entry);
     #endif //USE_DYNAMIC_ALLOCATION
+}
+GatewayQueueRetT GatewayQueueAppendFront  (GatewayQueueT* ptr_queue,QueueEntry* ptr_entry){
+    //check the arguments
+    if((ptr_queue == NULL) || (ptr_entry == NULL))
+    {
+        return QAB_INVALID_ARG;
+    }
     
-    return QAB_NO_ERRORS;
+    #if (USE_STATIC_ALLOCATION == TRUE)
+        return QAB_queue_append_front(ptr_queue,ptr_entry);
+        //#endif //USE_STATIC_ALLOCATION
+    #elif (USE_DYNAMIC_ALLOCATION == TRUE)
+        return QLB_append_front(ptr_queue,ptr_entry);
+    #endif //USE_DYNAMIC_ALLOCATION
 }
 GatewayQueueRetT GatewayQueueServe   (GatewayQueueT* ptr_queue,QueueEntry* ptr_entry){
     //check the arguments
@@ -100,14 +98,11 @@ GatewayQueueRetT GatewayQueueServe   (GatewayQueueT* ptr_queue,QueueEntry* ptr_e
     }
     
     #if (USE_STATIC_ALLOCATION == TRUE)
-    QAB_queue_serve(ptr_queue,ptr_entry);
-    #endif //USE_STATIC_ALLOCATION
-
-    #if (USE_DYNAMIC_ALLOCATION == TRUE)
-    QLB_serve(ptr_queue,ptr_entry);
+        return QAB_queue_serve(ptr_queue,ptr_entry);
+        //#endif //USE_STATIC_ALLOCATION
+    #elif (USE_DYNAMIC_ALLOCATION == TRUE)
+        return QLB_serve(ptr_queue,ptr_entry);
     #endif //USE_DYNAMIC_ALLOCATION
-    
-    return QAB_NO_ERRORS;
 }
 GatewayQueueRetT GatewayQueueRetrive (GatewayQueueT* ptr_queue,QueueEntry* ptr_entry){
     //check the arguments
@@ -117,14 +112,11 @@ GatewayQueueRetT GatewayQueueRetrive (GatewayQueueT* ptr_queue,QueueEntry* ptr_e
     }
     
     #if (USE_STATIC_ALLOCATION == TRUE)
-    QAB_queue_retrive(ptr_queue,ptr_entry);
-    #endif //USE_STATIC_ALLOCATION
-
-    #if (USE_DYNAMIC_ALLOCATION == TRUE)
-    QLB_retrive(ptr_queue,ptr_entry);
+        return QAB_queue_retrive(ptr_queue,ptr_entry);
+        //#endif //USE_STATIC_ALLOCATION
+    #elif (USE_DYNAMIC_ALLOCATION == TRUE)
+        return QLB_retrive(ptr_queue,ptr_entry);
     #endif //USE_DYNAMIC_ALLOCATION
-    
-    return QAB_NO_ERRORS;
 }
 GatewayQueueRetT GatewayQueueClear (GatewayQueueT* ptr_queue){
     //check the arguments
@@ -134,14 +126,11 @@ GatewayQueueRetT GatewayQueueClear (GatewayQueueT* ptr_queue){
     }
     
     #if (USE_STATIC_ALLOCATION == TRUE)
-    QAB_queue_clear(ptr_queue);
-    #endif //USE_STATIC_ALLOCATION
-
-    #if (USE_DYNAMIC_ALLOCATION == TRUE)
-    QLB_clear(ptr_queue);
+        return QAB_queue_clear(ptr_queue);
+        //#endif //USE_STATIC_ALLOCATION
+    #elif (USE_DYNAMIC_ALLOCATION == TRUE)
+        return QLB_clear(ptr_queue);
     #endif //USE_DYNAMIC_ALLOCATION
-    
-    return QAB_NO_ERRORS;
 }
 GatewayQueueRetT GatewayQueueTraverse(GatewayQueueT* ptr_queue,void(*ptr_func)(QueueEntry)){
     //check the arguments
@@ -151,13 +140,10 @@ GatewayQueueRetT GatewayQueueTraverse(GatewayQueueT* ptr_queue,void(*ptr_func)(Q
     }
     
     #if (USE_STATIC_ALLOCATION == TRUE)
-    QAB_queue_traverse(ptr_queue,ptr_func);
-    #endif //USE_STATIC_ALLOCATION
-
-    #if (USE_DYNAMIC_ALLOCATION == TRUE)
-    QLB_traverse(ptr_queue,ptr_func);
+        return QAB_queue_traverse(ptr_queue,ptr_func);
+        //#endif //USE_STATIC_ALLOCATION
+    #elif (USE_DYNAMIC_ALLOCATION == TRUE)
+        return QLB_traverse(ptr_queue,ptr_func);
     #endif //USE_DYNAMIC_ALLOCATION
-    
-    return QAB_NO_ERRORS;
 }
 

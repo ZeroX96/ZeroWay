@@ -1,12 +1,29 @@
 #ifndef __QUEUE_ARRBASED__
 #define __QUEUE_ARRBASED__
-
-#include "AppGateWayCfg.h"
 /*
 *   QAB_ >> Queue Array Based
 *   Mahmoud Saad @ZeroX86
 */
-#define MAX_QUEUE_LENGTH GATEWAY_QUEUE_SIZE
+#include <stdint.h>
+#include <stdbool.h>
+#include "AppGateWayCfg.h"
+#include "AppGateWayDataTypes.h"
+#ifndef NULL
+#define NULL ((void*)0)
+#endif //NULL
+
+#ifndef TRUE
+#define TRUE		(1U)
+#endif //TRUE
+
+#ifndef FALSE
+#define FALSE		(0U)
+#endif //FALSE
+
+#ifndef MAX_QUEUE_LENGTH
+#define MAX_QUEUE_LENGTH GATEWAY_QUEUE_SIZE //NOT IMPORTANT IN THE LINKED BASED
+#endif //MAX_QUEUE_LENGTH
+
 typedef enum
 {
     QAB_ERROR_FOUND,
@@ -34,6 +51,7 @@ QAB_return_t QAB_queue_empty(Queue_ArrBased *ptr_queue);
 QAB_return_t QAB_queue_full(Queue_ArrBased *ptr_queue);
 uint32_t     QAB_queue_size(Queue_ArrBased *ptr_queue);
 QAB_return_t QAB_queue_append(Queue_ArrBased *ptr_queue,QueueEntry *ptr_entry);
+QAB_return_t QAB_queue_append_front(Queue_ArrBased *ptr_queue,QueueEntry *ptr_entry);
 QAB_return_t QAB_queue_serve(Queue_ArrBased *ptr_queue,QueueEntry *ptr_entry);
 QAB_return_t QAB_queue_retrive(Queue_ArrBased *ptr_queue,QueueEntry *ptr_entry);
 QAB_return_t QAB_queue_clear(Queue_ArrBased *ptr_queue);

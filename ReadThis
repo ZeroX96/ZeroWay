@@ -1,0 +1,19 @@
+Hello felows :D, 
+it's my honor to share this module with you which is 
+		a Gateway-Communication Manager 
+it offers the follwing features
+- highly portable, extendable, and configurable module as needed
+- it uses only 4K-Bytes of memory
+- can be easly extended and/or ported to to work on any microcontroller,
+	and to use any number of communication channels, 
+	currently it works with USART, I2C, SPI (CAN-Binding) and at32 and tiva-c
+- the user can select the channel or let the gateway do it 
+- can handle any numebr of requests with the dynamic-allocation setting
+	and a defined number by the user with the static-allocation setting
+- two priority levels on data so you define if the data needs to be transmitted 
+	in the very next operation or to be queued as a normal operation
+- it uses two operating schemes using static and dynamic memory allocation
+- it simulates an internal simple-scheduler handling the requests
+- 3 simultanuos sending operations
+
+i'll be any opinion and or edit? it will be very appreciated

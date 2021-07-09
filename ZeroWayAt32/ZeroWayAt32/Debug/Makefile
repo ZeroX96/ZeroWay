@@ -39,6 +39,7 @@ SUBDIRS :=
 C_SRCS +=  \
 ../AppGateWay.c \
 ../GateWayQueue.c \
+../main.c \
 ../Queue_ArrBased.c \
 ../Queue_LinkBased.c \
 ../Spi.c \
@@ -55,6 +56,7 @@ ASM_SRCS +=
 OBJS +=  \
 AppGateWay.o \
 GateWayQueue.o \
+main.o \
 Queue_ArrBased.o \
 Queue_LinkBased.o \
 Spi.o \
@@ -64,6 +66,7 @@ Usart.o
 OBJS_AS_ARGS +=  \
 AppGateWay.o \
 GateWayQueue.o \
+main.o \
 Queue_ArrBased.o \
 Queue_LinkBased.o \
 Spi.o \
@@ -73,6 +76,7 @@ Usart.o
 C_DEPS +=  \
 AppGateWay.d \
 GateWayQueue.d \
+main.d \
 Queue_ArrBased.d \
 Queue_LinkBased.d \
 Spi.d \
@@ -82,6 +86,7 @@ Usart.d
 C_DEPS_AS_ARGS +=  \
 AppGateWay.d \
 GateWayQueue.d \
+main.d \
 Queue_ArrBased.d \
 Queue_LinkBased.d \
 Spi.d \
@@ -110,6 +115,13 @@ LINKER_SCRIPT_DEP+=
 	
 
 ./GateWayQueue.o: .././GateWayQueue.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\AtmelSt\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\AtmelSt\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\AtmelSt\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./main.o: .././main.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\AtmelSt\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\AtmelSt\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\AtmelSt\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

@@ -1,13 +1,29 @@
 #ifndef __QUEUE_LINKBASED__
 #define __QUEUE_LINKBASED__
-#include <stdint.h>
-#include "AppGateWayCfg.h"
 /*
 *   QLB_ >> Queue Linked Based
 *   Mahmoud Saad @ZeroX86
 */
-#define MAX_QUEUE_LENGTH GATEWAY_QUEUE_SIZE //NOT IMPORTANT IN THE LINKED BASED
+#include <stdint.h>
+#include <stdbool.h>
+#include "AppGateWayCfg.h"
+#include "AppGateWayDataTypes.h"
+#ifndef NULL
+#define NULL ((void*)0)
+#endif //NULL
 
+#ifndef TRUE
+#define TRUE		(1U)
+#endif //TRUE
+
+#ifndef FALSE
+#define FALSE		(0U)
+#endif //FALSE
+
+
+#ifndef MAX_QUEUE_LENGTH
+#define MAX_QUEUE_LENGTH GATEWAY_QUEUE_SIZE //NOT IMPORTANT IN THE LINKED BASED
+#endif //MAX_QUEUE_LENGTH
 
 typedef enum
 {
@@ -37,14 +53,15 @@ typedef struct{
 }Queue_LinkBased;
 
 
-QLB_return_t QLB_create     (Queue_LinkBased *ptr_queue);
-QLB_return_t QLB_empty      (Queue_LinkBased *ptr_queue);
-QLB_return_t QLB_full       (Queue_LinkBased *ptr_queue);
-uint32_t     QLB_size       (Queue_LinkBased *ptr_queue);
-QLB_return_t QLB_clear      (Queue_LinkBased *ptr_queue);
-QLB_return_t QLB_append     (Queue_LinkBased *ptr_queue,QueueEntry *ptr_entry);
-QLB_return_t QLB_serve      (Queue_LinkBased *ptr_queue,QueueEntry *ptr_entry);
-QLB_return_t QLB_retrive    (Queue_LinkBased *ptr_queue,QueueEntry *ptr_entry);
-QLB_return_t QLB_traverse   (Queue_LinkBased *ptr_queue,void(*ptr_func)(QueueEntry));
+QLB_return_t QLB_create      (Queue_LinkBased *ptr_queue);
+QLB_return_t QLB_empty       (Queue_LinkBased *ptr_queue);
+QLB_return_t QLB_full        (Queue_LinkBased *ptr_queue);
+uint32_t     QLB_size        (Queue_LinkBased *ptr_queue);
+QLB_return_t QLB_clear       (Queue_LinkBased *ptr_queue);
+QLB_return_t QLB_append      (Queue_LinkBased *ptr_queue,QueueEntry *ptr_entry);
+QLB_return_t QLB_append_front(Queue_LinkBased *ptr_queue,QueueEntry *ptr_entry);
+QLB_return_t QLB_serve       (Queue_LinkBased *ptr_queue,QueueEntry *ptr_entry);
+QLB_return_t QLB_retrive     (Queue_LinkBased *ptr_queue,QueueEntry *ptr_entry);
+QLB_return_t QLB_traverse    (Queue_LinkBased *ptr_queue,void(*ptr_func)(QueueEntry));
 #endif //__QUEUE_LINKBASED__
 

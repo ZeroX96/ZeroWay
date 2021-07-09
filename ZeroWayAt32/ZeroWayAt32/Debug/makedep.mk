@@ -6,6 +6,8 @@ AppGateWay.c
 
 GateWayQueue.c
 
+main.c
+
 Queue_ArrBased.c
 
 Queue_LinkBased.c

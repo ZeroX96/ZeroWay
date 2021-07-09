@@ -1,3 +1,8 @@
+
+#include "AppGateWayCfg.h"
+
+#if (USE_DYNAMIC_ALLOCATION == TRUE)
+
 #include "Queue_LinkBased.h"
 
 
@@ -105,6 +110,38 @@ QLB_return_t QLB_append(Queue_LinkBased *ptr_queue,QueueEntry *ptr_entry)
                 ptr_temp->node_next=NULL;
                 ptr_temp->node_entry=*ptr_entry;
                 if(!ptr_queue->QLB_rear)
+                ptr_queue->QLB_front=ptr_temp;
+                else
+                ptr_queue->QLB_rear->node_next=ptr_temp;
+                ptr_queue->QLB_rear=ptr_temp;
+                ptr_queue->QLB_size++;
+                return QLB_NO_ERRORS;
+            }
+            else
+            {
+                return QLB_ERROR_CNT_MALLOC;
+            }
+        }
+        else
+        {
+            return QLB_NOT_INITIALIZED;
+        }
+    }
+    return QLB_INVALID_ARG;
+}
+
+QLB_return_t QLB_append_front(Queue_LinkBased *ptr_queue,QueueEntry *ptr_entry)
+{
+    if((ptr_queue != NULL)&&(ptr_entry != NULL))
+    {
+        if(ptr_queue->QLB_InitStatus == TRUE)
+        {
+            QLB_node*ptr_temp=(QLB_node*)malloc(sizeof(QLB_node));
+            if(ptr_temp != NULL)
+            {
+                ptr_temp->node_next=NULL;
+                ptr_temp->node_entry=*ptr_entry;
+                if(!ptr_queue->QLB_rear)
                     ptr_queue->QLB_front=ptr_temp;
                 else
                     ptr_queue->QLB_rear->node_next=ptr_temp;
@@ -185,3 +222,5 @@ QLB_return_t QLB_traverse   (Queue_LinkBased *ptr_queue,void(*ptr_func)(QueueEnt
     }
     return QLB_INVALID_ARG;
 }
+
+#endif //#if (USE_DYNAMIC_ALLOCATION == TRUE)

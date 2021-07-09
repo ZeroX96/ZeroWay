@@ -37,26 +37,6 @@
 #endif //USRT																		  |
 //end of the default settings								}//default settings-------|
 
-//USART_REGS
-/*
-	#define MSA_UBRRH	(*(volatile uint8_t)0x40)
-	#define MSA_UCSRC	(*(volatile uint8_t)0x40)
-	#define MSA_UDR		(*(volatile uint8_t)0x2c)
-	#define MSA_UCSRA	(*(volatile uint8_t)0x2b)
-	#define MSA_UCSRB	(*(volatile uint8_t)0x2a)
-	#define MSA_UBRRL	(*(volatile uint8_t)0x29)
-*/
-////non expandable, solved
-//#define UBRRL_0_OFFSET (0U)	//the base
-//#define UCSRB_0_OFFSET (1U)
-//#define UCSRA_0_OFFSET (2U)
-//#define UDR_0_OFFSET   (3U)
-//#define UCSRC_0_OFFSET (23U) 
-//
-//typedef enum{
-	//USART_0_BASE = 0x29, 	//add of TWBR
-	////for future use with devices having more than one twi module
-//}TwiBaseT;
 #include <avr/interrupt.h>
 #include <util/delay.h>
 

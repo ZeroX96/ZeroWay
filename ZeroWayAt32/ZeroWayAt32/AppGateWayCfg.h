@@ -9,9 +9,6 @@
 #ifndef APPGATEWAYCFG_H_
 #define APPGATEWAYCFG_H_
 
-#include <stdint.h>
-#include <stdbool.h>
-#include "AppGateWayDataTypes.h"
 
 #define GATEWAY_QUEUE_SIZE (10U)
 

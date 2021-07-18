@@ -30,15 +30,15 @@
     <EraseKey />
     <AsfFrameworkConfig>
       <framework-data xmlns="">
-  <options />
-  <configurations />
-  <files />
-  <documentation help="" />
-  <offline-documentation help="" />
-  <dependencies>
-    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.47.0" />
-  </dependencies>
-</framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.47.0" />
+        </dependencies>
+      </framework-data>
     </AsfFrameworkConfig>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -130,6 +130,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="AppGateWayDataTypes.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="GatewayPort.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="GatewayPort.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="GateWayQueue.c">

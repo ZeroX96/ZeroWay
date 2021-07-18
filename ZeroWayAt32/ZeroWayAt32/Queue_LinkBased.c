@@ -109,10 +109,12 @@ QLB_return_t QLB_append(Queue_LinkBased *ptr_queue,QueueEntry *ptr_entry)
             {
                 ptr_temp->node_next=NULL;
                 ptr_temp->node_entry=*ptr_entry;
-                if(!ptr_queue->QLB_rear)
-                ptr_queue->QLB_front=ptr_temp;
-                else
-                ptr_queue->QLB_rear->node_next=ptr_temp;
+                if(!ptr_queue->QLB_rear){
+                    ptr_queue->QLB_front=ptr_temp;
+                }                
+                else{
+                    ptr_queue->QLB_rear->node_next=ptr_temp;
+                }                
                 ptr_queue->QLB_rear=ptr_temp;
                 ptr_queue->QLB_size++;
                 return QLB_NO_ERRORS;
@@ -139,13 +141,15 @@ QLB_return_t QLB_append_front(Queue_LinkBased *ptr_queue,QueueEntry *ptr_entry)
             QLB_node*ptr_temp=(QLB_node*)malloc(sizeof(QLB_node));
             if(ptr_temp != NULL)
             {
-                ptr_temp->node_next=NULL;
+                ptr_temp->node_next=ptr_queue->QLB_front;
                 ptr_temp->node_entry=*ptr_entry;
-                if(!ptr_queue->QLB_rear)
+                if(!ptr_queue->QLB_front){
                     ptr_queue->QLB_front=ptr_temp;
-                else
-                    ptr_queue->QLB_rear->node_next=ptr_temp;
-                ptr_queue->QLB_rear=ptr_temp;
+                    ptr_queue->QLB_rear=ptr_temp; 
+                }
+                else{
+                    ptr_queue->QLB_front = ptr_temp;
+                }                
                 ptr_queue->QLB_size++;
                 return QLB_NO_ERRORS;
             }

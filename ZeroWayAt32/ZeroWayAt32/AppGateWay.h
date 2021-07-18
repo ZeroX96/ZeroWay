@@ -27,7 +27,7 @@
 GateWayRetT GateWayInit(void);
 GateWayRetT GateWaySend(GateWayT* GateWayElement);
 GateWayRetT GateWayRecieve();
-GateWayRetT GateWayDisp(void);
+GateWayRetT GateWayDispatch(void);
 
 
 /*

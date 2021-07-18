@@ -83,12 +83,12 @@ QAB_return_t QAB_queue_append_front(Queue_ArrBased *ptr_queue,QueueEntry *ptr_en
     {
         if(ptr_queue->QAB_InitStatus == TRUE)
         {
-            if(ptr_queue->Queue_ArrBased_rear== MAX_QUEUE_LENGTH-1)
-                ptr_queue->Queue_ArrBased_rear=0;
+            if(ptr_queue->Queue_ArrBased_front == 0)
+                ptr_queue->Queue_ArrBased_front = MAX_QUEUE_LENGTH-1;
             else
-                ptr_queue->Queue_ArrBased_rear++;
+                ptr_queue->Queue_ArrBased_front--;
 
-            ptr_queue->entry_arr[ptr_queue->Queue_ArrBased_rear]=*ptr_entry;
+            ptr_queue->entry_arr[ptr_queue->Queue_ArrBased_front]=*ptr_entry;
             ptr_queue->Queue_ArrBased_size++;
             return QAB_NO_ERRORS;
         }
